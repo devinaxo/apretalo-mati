@@ -1,2 +1,2 @@
-# apretalo-mati
-El videojuego que todos esperaban, Apretalo Mati 2024
+# APRETALO MATI!!
+Eso (No se puede jugar si no te llamas Mati)
