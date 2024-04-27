@@ -1,0 +1,38 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+    font-size: 0.1rem;
+    color: red;
+    transition: ease-in-out transform;
+    transition-duration: 0.1s;
+}
+body{
+    background: url("game.jpg");
+}
+h1:hover{
+    transform: scale(50);
+}
+.title{
+    color: green;
+}
+.clicker{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
+#title{
+    color: blue;
+}
+body > h1#title.title{
+    color: magenta;
+}
+h1.title{
+    color: yellow;
+}
+h1#title{
+    color: purple;
+}
+h1#title.title{
+    color: steelblue;
+}
