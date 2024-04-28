@@ -16,13 +16,29 @@ h1:hover{
 .title{
     color: green;
 }
-.clicker{
-    background-color: aliceblue;
+.container{
     display: flex;
     justify-content: center;
 }
+.clicker{
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.saves-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.savebtn{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 #title{
     color: blue;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
 }
 body > h1#title.title{
     color: magenta;
