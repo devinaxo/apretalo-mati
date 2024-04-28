@@ -1,66 +1,56 @@
 var clicks = 0;
-var clicksperclick = 1;
-var cost = 0;
-var timesupgraded = 0;
-var clickspersec = 0;
+var clicksPerClick = 1;
 var generators = 0;
-var generatorcost = 35;
 
-function generate(){
+function init(){
   loadGame();
-  document.getElementById("cost").innerHTML = cost;
-  document.getElementById("upgraded").innerHTML = timesupgraded;
-  document.getElementById("clicks").innerHTML = clicks;
-  document.getElementById("generatorcost").innerHTML = generatorcost;
-  document.getElementById("generators").innerHTML = generators;
-  document.getElementById("clicks").innerHTML = clicks;
-  setInterval(function(){
-    clicks += generators;
-    document.getElementById("clicks").innerHTML = clicks;
-  },1000);
-  setInterval(function(){
-    saveGame();
-  }, 30000);
-};
-function onClick() {
-  clicks += clicksperclick;
-  document.getElementById("clicks").innerHTML = clicks;
-};
-function mejorar(){
-  if(clicks >= (timesupgraded/2 + 15 * timesupgraded + 20)){
-      var aux = timesupgraded;
-      clicksperclick += 1;
-      clicks -= aux/2 + 15 * timesupgraded + 20;
-      timesupgraded += 1;
-      document.getElementById("cost").innerHTML = aux/2 + 15 * timesupgraded + 20;
-      document.getElementById("upgraded").innerHTML = timesupgraded;
-      document.getElementById("clicks").innerHTML = clicks;
-  }
 }
-function comprarGen(){
-  if(clicks >= (generators/2 + 33 * generators + 35)){
-    var aux = generators;
-    clickspersec += 1;
-    clicks -= aux/2 + 15 * aux + 35;
-    generators += 1;
-    document.getElementById("generatorcost").innerHTML = generators/2 + 33 * generators + 35;
-    document.getElementById("generators").innerHTML = generators;
+function clickdat(number){
+    clicks += number;
     document.getElementById("clicks").innerHTML = clicks;
-  }
+};
+function upgradeClick(){
+  var upgradeCost = Math.floor(10 * Math.pow(1.3, clicksPerClick));
+  if(clicks >= upgradeCost){
+    clicksPerClick += 1;
+    clicks -= upgradeCost;
+    document.getElementById('clicksPerClick').innerHTML = clicksPerClick;
+    document.getElementById('clicks').innerHTML = clicks;
+  };
+  var nextUpCost = Math.floor(10 * Math.pow(1.3, clicksPerClick));
+  document.getElementById('upgradeCost').innerHTML = nextUpCost;
+}
+function buyGen(){
+    var genCost = Math.floor(35 * Math.pow(1.5, generators));     
+    if(clicks >= genCost){
+        generators += 1;
+    	  clicks -= genCost;
+        document.getElementById('generators').innerHTML = generators;
+        document.getElementById('clicks').innerHTML = clicks;
+    };
+    var nextGenCost = Math.floor(35 * Math.pow(1.5, generators));
+    document.getElementById('genCost').innerHTML = nextGenCost;
 };
 function saveGame(){
-  var gameSave = {
+  var save = {
     clicks: clicks,
-    clicksperclick: clicksperclick,
-    timesupgraded: timesupgraded,
+    clicksPerClick: clicksPerClick,
     generators: generators
   };
-  localStorage.setItem("gameSave", JSON.stringify(gameSave));
+  localStorage.setItem("save", JSON.stringify(save));
 }
 function loadGame(){
-  var savedGame = JSON.parse(localStorage.getItem("gameSave"));
-  if(typeof savedGame.clicks !== "undefined") clicks = savedGame.clicks;
-  if(typeof savedGame.clicksperclick !== "undefined") clicksperclick = savedGame.clicksperclick;
-  if(typeof savedGame.timesupgraded !== "undefined") timesupgraded = savedGame.timesupgraded;
-  if(typeof savedGame.generators !== "undefined") clicks = savedGame.generators;
+  var savegame = JSON.parse(localStorage.getItem("save"));
+  if(typeof savegame.clicks !== "undefined") clicks = savegame.clicks;
+  if(typeof savegame.clicksPerClick !== "undefined") clicksPerClick = savegame.clicksPerClick;
+  if(typeof savegame.generators !== "undefined") generators = savegame.generators;
+
+  document.getElementById("clicks").innerHTML = clicks;
+  document.getElementById('clicksPerClick').innerHTML = clicksPerClick;
+  document.getElementById('generators').innerHTML = generators;
 }
+
+window.setInterval(function(){
+	clickdat(generators);
+}, 1000);
+window.setInterval(saveGame(), 30000);
