@@ -4,6 +4,9 @@ var generators = 0;
 
 function init(){
   loadGame();
+  setInterval(function(){
+    saveGame();
+  }, 30000);
 }
 function clickdat(number){
     clicks += number;
@@ -53,4 +56,3 @@ function loadGame(){
 window.setInterval(function(){
 	clickdat(generators);
 }, 1000);
-window.setInterval(saveGame(), 30000);
