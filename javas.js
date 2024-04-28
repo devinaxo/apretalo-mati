@@ -8,6 +8,12 @@ var generatorcost = 35;
 
 function generate(){
   loadGame();
+  document.getElementById("cost").innerHTML = cost;
+  document.getElementById("upgraded").innerHTML = timesupgraded;
+  document.getElementById("clicks").innerHTML = clicks;
+  document.getElementById("generatorcost").innerHTML = generatorcost;
+  document.getElementById("generators").innerHTML = generators;
+  document.getElementById("clicks").innerHTML = clicks;
   setInterval(function(){
     clicks += generators;
     document.getElementById("clicks").innerHTML = clicks;
