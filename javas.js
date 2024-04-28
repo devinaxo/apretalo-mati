@@ -50,7 +50,9 @@ function loadGame(){
 
   document.getElementById("clicks").innerHTML = clicks;
   document.getElementById('clicksPerClick').innerHTML = clicksPerClick;
+  document.getElementById('upgradeCost').innerHTML = Math.floor(10 * Math.pow(1.3, clicksPerClick));
   document.getElementById('generators').innerHTML = generators;
+  document.getElementById('genCost').innerHTML = Math.floor(35 * Math.pow(1.5, generators));
 }
 
 window.setInterval(function(){
